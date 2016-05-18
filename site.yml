@@ -1,0 +1,8 @@
+---
+
+- name: apply common envrionment configuration
+  hosts: all
+  remote_user: user
+
+  roles:
+    - {role: common, become: true}

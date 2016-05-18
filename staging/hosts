@@ -1,0 +1,15 @@
+[servers:vars]
+ansible_user=user
+ansible_ssh_pass=secret
+ansible_become_pass=secret
+
+[servers:children]
+proxy
+storage
+
+[proxy]
+192.168.0.10
+
+[storage]
+192.168.0.[11:12]
+

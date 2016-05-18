@@ -1,3 +1,10 @@
+#########################
+# Project Related
+#########################
+roles/roasted/files/id_rsa.pub
+
+
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

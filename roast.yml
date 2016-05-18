@@ -1,0 +1,9 @@
+# This file will "roast" those raw machine, which has a fresh installed system,
+# to a desired state, setting up SSH keys mainly.
+---
+
+- name: Roasting the raw machine
+  hosts: all
+
+  roles:
+    - roasted

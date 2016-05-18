@@ -1,0 +1,15 @@
+---
+- name: create .ssh directory
+  file: path=~/.ssh state=directory
+
+- name: copy public key
+# Note that this means you can only have one authorized key.
+  copy: src=id_rsa.pub dest=~/.ssh/authorized_keys2
+
+- name: turn off password authentication
+  become: true
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "#PasswordAuthentication yes"
+    line: PasswordAuthentication no
+  notify: restart sshd
