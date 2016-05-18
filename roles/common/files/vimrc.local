@@ -1,0 +1,17 @@
+" handle highlight 
+hi Comment ctermfg=blue
+
+" handle indentation
+set autoindent
+set smartindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
+" mixin
+set incsearch
+set showmatch
+set ruler
+
+
+

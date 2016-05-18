@@ -1,3 +1,9 @@
+---
 - name: restart ntp
+  become: True
   service: name=ntp state=restarted
   tags: ntp
+
+- name: apt update
+  become: True
+  apt: update_cache=yes

@@ -10,6 +10,8 @@
   become: true
   lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: "#PasswordAuthentication yes"
+    regexp: "^#PasswordAuthentication yes$"
     line: PasswordAuthentication no
+    backrefs: yes
+    # if this isn't set, line will be added even if no match of regexp was found
   notify: restart sshd

@@ -1,9 +1,9 @@
-[servers:vars]
+[raw:vars]
 ansible_user=user
 ansible_ssh_pass=secret
 ansible_become_pass=secret
 
-[servers:children]
+[raw:children]
 proxy
 storage
 

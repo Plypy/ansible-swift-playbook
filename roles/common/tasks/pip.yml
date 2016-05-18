@@ -1,0 +1,14 @@
+# install pip and use aliyun's mirror
+---
+
+- name: copy get-pip.py
+  copy: dest=~/get-pip.py src=get-pip.py
+
+- name: check whether pip is already installed
+  shell: which pip
+  register: pip_path
+
+- name: get pip
+  become: True
+  shell: python get-pip.py
+  when: (pip_path.stdout | length) == 0

@@ -1,0 +1,18 @@
+# replace apt's sources with aliyun's mirror
+---
+
+- name: backup the original sources.list
+  become: True
+  copy:
+    dest: /etc/apt/sources.list.backup
+    src: /etc/apt/sources.list
+    remote_src: True
+
+- name: copy new sources.list
+  become: True
+  copy:
+    dest: /etc/apt/sources.list
+    src: sources.list
+  notify: apt update
+
+

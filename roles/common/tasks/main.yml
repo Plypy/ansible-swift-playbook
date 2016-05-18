@@ -1,15 +1,5 @@
----
-# Configure NTP servers
-
-- name: Install ntp
-  apt: name=ntp state=present
-  tags: ntp
-
-- name: Configure ntp file
-  copy: src=ntp.conf dest=/etc/ntp.conf
-  notify: restart ntp
-  tags: ntp
-
-- name: Start the ntp service
-  service: name=ntp state=started enabled=yes
-  tags: ntp
+- include: apt-sources.yml
+- include: pip.yml
+- include: mixin.yml
+- include: ntp.yml
+- include: packages.yml

@@ -3,7 +3,7 @@
 ---
 
 - name: Roasting the raw machine
-  hosts: all
+  hosts: raw
 
   roles:
     - roasted
