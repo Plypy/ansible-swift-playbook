@@ -7,8 +7,9 @@
 - name: check whether pip is already installed
   shell: which pip
   register: pip_path
+  ignore_errors: true
 
 - name: get pip
-  become: True
+  become: true
   shell: python get-pip.py
-  when: (pip_path.stdout | length) == 0
+  when: pip_path|failed

@@ -2,7 +2,15 @@
 
 - name: apply common envrionment configuration
   hosts: all
-  remote_user: user
-
   roles:
-    - common
+  - common
+
+- name: set up proxy server
+  hosts: proxy
+  roles:
+  - swift-proxy
+
+- name: set up storage server
+  hosts: storage
+  roles:
+  - swift-storage

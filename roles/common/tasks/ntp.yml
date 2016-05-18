@@ -2,17 +2,17 @@
 # Configure NTP servers
 
 - name: install ntp
-  become: True
+  become: true
   apt: name=ntp state=present
   tags: ntp
 
 - name: configure ntp file
-  become: True
+  become: true
   copy: src=ntp.conf dest=/etc/ntp.conf
   notify: restart ntp
   tags: ntp
 
 - name: start the ntp service
-  become: True
+  become: true
   service: name=ntp state=started enabled=yes
   tags: ntp

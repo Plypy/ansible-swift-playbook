@@ -1,4 +1,4 @@
 ---
 - name: install git
-  become: True
+  become: true
   apt: name=git-core state=present

@@ -1,4 +1,4 @@
 ---
 - name: configuring vim
-  become: True
+  become: true
   copy: dest=/etc/vim/vimrc.local src=vimrc.local

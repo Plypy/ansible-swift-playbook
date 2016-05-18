@@ -6,4 +6,4 @@
   hosts: raw
 
   roles:
-    - roasted
+  - roasted

@@ -1,0 +1,68 @@
+---
+
+- name: install rsync
+  become: true
+  apt: name=rsync state=present
+
+- name: configure rsync
+  become: true
+  template: dest=/etc/rsyncd.conf src=rsyncd.conf
+
+- name: enable rsync service
+  become: true
+  lineinfile:
+    dest: /etc/default/rsync
+    regexp: "^RSYNC_ENABLE=false$"
+    line: RSYNC_ENABLE=true
+    backrefs: yes
+    # if this isn't set, line will be added even if no match of regexp was found
+  notify: restart rsync
+
+- name: start rsync
+  become: true
+  service: name=rsync state=started enabled=yes
+
+# install swift stuff
+- name: install swift
+  become: true
+  apt: name=swift state=present
+
+- name: install swift-account
+  become: true
+  apt: name=swift-account state=present
+
+- name: install swift-container
+  become: true
+  apt: name=swift-container state=present
+
+- name: install swift-object
+  become: true
+  apt: name=swift-object state=present
+
+# configurations
+- name: create /etc/swift
+  become: true
+  file:
+    path: /etc/swift
+    state: directory
+
+- name: copy account server configuration
+  become: true
+  template: dest=/etc/swift/account-server.conf src=account-server.conf
+
+- name: copy container server configuration
+  become: true
+  template: dest=/etc/swift/container-server.conf src=container-server.conf
+
+- name: copy object server configuration
+  become: true
+  template: dest=/etc/swift/object-server.conf src=object-server.conf
+
+- name: create cache directory and set ownerships
+  become: true
+  file:
+    path: /var/cache/swift
+    owner: root
+    group: swift
+    state: directory
+    recurse: yes

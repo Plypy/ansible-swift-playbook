@@ -2,17 +2,27 @@
 ---
 
 - name: backup the original sources.list
-  become: True
+  become: true
   copy:
     dest: /etc/apt/sources.list.backup
     src: /etc/apt/sources.list
-    remote_src: True
+    remote_src: true
 
+# Note that apt-get update may get malformed package cache,
+# in which case you'll get errors complaining that
+# Unable to correct problems, you have held broken packages.
+# To solve this run Ad-Hoc apt-get clean & update again
+
+# ansible hosts_pattern -m shell -a 'apt-get clean' --become -K
+# ansible hosts_pattern -m apt -a 'update_cache=yes' --become -K
 - name: copy new sources.list
-  become: True
+  become: true
   copy:
     dest: /etc/apt/sources.list
     src: sources.list
-  notify: apt update
+  notify:
+    - apt clean
+    - apt update
+
 
 

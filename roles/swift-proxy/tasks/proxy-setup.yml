@@ -1,0 +1,26 @@
+---
+- name: install swift
+  become: true
+  apt: name=swift state=present
+
+- name: install swift-proxy
+  become: true
+  apt: name=swift-proxy state=present
+
+- name: install python-swiftclient
+  become: true
+  apt: name=python-swiftclient state=present
+
+- name: install memcached
+  become: true
+  apt: name=memcached state=present
+
+- name: create /etc/swift
+  become: true
+  file:
+    path: /etc/swift
+    state: directory
+
+- name: copy proxy configuration
+  become: true
+  template: dest=/etc/swift/proxy-server.conf src=proxy-server.conf

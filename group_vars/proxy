@@ -1,0 +1,4 @@
+---
+
+proxy_port: 2333
+swauthkey: secret
