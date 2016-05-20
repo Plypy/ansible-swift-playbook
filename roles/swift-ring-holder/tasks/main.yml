@@ -1,0 +1,16 @@
+# Distribute rings
+# Make sure the rings have been built.
+#
+---
+
+- name: copy account ring
+  become: True
+  copy: dest=/etc/swift/account.ring.gz src=account.ring.gz
+
+- name: copy container ring
+  become: True
+  copy: dest=/etc/swift/container.ring.gz src=container.ring.gz
+
+- name: copy object ring
+  become: True
+  copy: dest=/etc/swift/object.ring.gz src=object.ring.gz

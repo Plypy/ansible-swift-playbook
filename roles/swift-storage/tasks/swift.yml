@@ -1,5 +1,6 @@
 ---
 
+# rsync
 - name: install rsync
   become: true
   apt: name=rsync state=present
@@ -39,24 +40,14 @@
   become: true
   apt: name=swift-object state=present
 
-# configurations
-- name: create /etc/swift
+- name: ensure proper owership of mount point
   become: true
   file:
-    path: /etc/swift
+    path: /srv/node
+    owner: swift
+    group: swift
     state: directory
-
-- name: copy account server configuration
-  become: true
-  template: dest=/etc/swift/account-server.conf src=account-server.conf
-
-- name: copy container server configuration
-  become: true
-  template: dest=/etc/swift/container-server.conf src=container-server.conf
-
-- name: copy object server configuration
-  become: true
-  template: dest=/etc/swift/object-server.conf src=object-server.conf
+    recurse: true
 
 - name: create cache directory and set ownerships
   become: true
@@ -65,4 +56,4 @@
     owner: root
     group: swift
     state: directory
-    recurse: yes
+

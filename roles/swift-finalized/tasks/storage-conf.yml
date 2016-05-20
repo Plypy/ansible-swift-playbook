@@ -1,0 +1,20 @@
+---
+
+- name: copy account server configuration
+  become: true
+  template: dest=/etc/swift/account-server.conf src=account-server.conf
+  notify: restart account-server
+  when: inventory_hostname in groups['storage']
+
+- name: copy container server configuration
+  become: true
+  template: dest=/etc/swift/container-server.conf src=container-server.conf
+  notify: restart container-server
+  when: inventory_hostname in groups['storage']
+
+- name: copy object server configuration
+  become: true
+  template: dest=/etc/swift/object-server.conf src=object-server.conf
+  notify: restart object-server
+  when: inventory_hostname in groups['storage']
+

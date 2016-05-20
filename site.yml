@@ -5,6 +5,11 @@
   roles:
   - common
 
+- name: set up common swift things
+  hosts: all
+  roles:
+  - swift-common
+
 - name: set up proxy server
   hosts: proxy
   roles:
@@ -14,3 +19,15 @@
   hosts: storage
   roles:
   - swift-storage
+
+# make sure you have generated the ring first
+- name: distribute rings
+  hosts: all
+  roles:
+  - swift-ring-holder
+
+
+- name: finalize swift cluster installation
+  hosts: all
+  roles:
+  - swift-finalized

@@ -1,6 +1,7 @@
 #########################
 # Project Related
 #########################
+remakerings.sh
 roles/common/files/id_rsa.pub
 site.retry
 

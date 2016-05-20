@@ -1,0 +1,9 @@
+---
+
+- name: create /etc/swift
+  become: true
+  file:
+    owner: root
+    group: swift
+    path: /etc/swift
+    state: directory

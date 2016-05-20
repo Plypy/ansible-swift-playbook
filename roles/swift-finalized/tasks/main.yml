@@ -1,0 +1,8 @@
+---
+
+- include: common-conf.yml
+- include: proxy-conf.yml
+- include: storage-conf.yml
+- include: start-services.yml
+
+

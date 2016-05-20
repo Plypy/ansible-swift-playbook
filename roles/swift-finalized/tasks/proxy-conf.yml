@@ -1,0 +1,7 @@
+---
+
+- name: copy proxy server configuration
+  become: true
+  template: dest=/etc/swift/proxy-server.conf src=proxy-server.conf
+  notify: restart proxy-server
+  when: inventory_hostname in groups['proxy']

@@ -1,0 +1,21 @@
+---
+
+- name: ensure proper ownership for swift folder
+  become: true
+  file:
+    path: /etc/swift
+    state: directory
+    owner: root
+    group: swift
+    recurse: yes
+
+- name: restart swift-proxy
+  become: true
+  shell: swift-init proxy reload
+  when: inventory_hostname in groups['proxy']
+
+- name: restart swift-storage
+  become: true
+  shell: swift-init all reload
+  when: inventory_hostname in groups['storage']
+  failed_when: false

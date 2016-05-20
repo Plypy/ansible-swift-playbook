@@ -7,6 +7,10 @@
   become: true
   apt: name=swift-proxy state=present
 
+- name: install swauth
+  become: true
+  apt: name=swauth state=present
+
 - name: install python-swiftclient
   become: true
   apt: name=python-swiftclient state=present
@@ -15,12 +19,7 @@
   become: true
   apt: name=memcached state=present
 
-- name: create /etc/swift
+- name: start the memcached service
   become: true
-  file:
-    path: /etc/swift
-    state: directory
+  service: name=memcached state=started enabled=yes
 
-- name: copy proxy configuration
-  become: true
-  template: dest=/etc/swift/proxy-server.conf src=proxy-server.conf

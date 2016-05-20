@@ -1,0 +1,34 @@
+---
+- name: restart memcached
+  become: true
+  service: name=memcached state=restarted
+  when: inventory_hostname in groups['proxy']
+
+- name: restart proxy-server
+  become: true
+  shell: swift-init proxy reload
+  when: inventory_hostname in groups['proxy']
+
+- name: restart account-server
+  become: true
+  shell: swift-init account reload
+  when: inventory_hostname in groups['storage']
+  failed_when: false
+
+- name: restart container-server
+  become: true
+  shell: swift-init container reload
+  when: inventory_hostname in groups['storage']
+  failed_when: false
+
+- name: restart object-server
+  become: true
+  shell: swift-init object reload
+  when: inventory_hostname in groups['storage']
+  failed_when: false
+
+- name: restart swift-storage
+  become: true
+  shell: swift-init all reload
+  when: inventory_hostname in groups['storage']
+  failed_when: false

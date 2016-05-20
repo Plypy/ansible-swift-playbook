@@ -1,0 +1,5 @@
+---
+
+- name: copy swift.conf
+  become: true
+  template: dest=/etc/swift/swift.conf src=swift.conf

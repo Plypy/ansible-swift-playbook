@@ -1,5 +1,3 @@
----
-
 account_port: 6002
 container_port: 6001
 object_port: 6000
