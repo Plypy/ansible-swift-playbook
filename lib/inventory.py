@@ -1,6 +1,8 @@
 # This is a naive inventory parser used to manipulate inventory files.
 # It only parses basic group declaration, not those varialbes and children
-# section, which will be ignored.
+# section, which will be ignored. And host variables will be ignored as well.
+#
+# So use this with caution.
 
 from utils import strip_comment
 
@@ -73,6 +75,26 @@ class Inventory:
         pass
 
 
+# def get_pair(word):
+#     '''
+#     Parse string like key=value, or value
+#     return [key, value]
+#     '''
+#     word = word.strip()
+
+#     eq = word.find('=')
+#     if eq < 0:
+#         # only value
+#         key = value = word
+#         if word.find('[') >= 0:
+#             key = value = flatten(word)
+#     else:
+#         key = word[0:eq].strip()
+#         value = word[eq+1:].strip()
+
+#     return [key, value]
+
+
 def flatten(range_item):
     '''
     Build a list based on the item with a range, this module only supports
@@ -97,6 +119,7 @@ def flatten(range_item):
         ret.append(entry)
     return ret
 
+
 def strn(n, l=0):
     '''
     Convert number n to a string padding with leading zeros,
@@ -109,3 +132,4 @@ def strn(n, l=0):
         return n
 
     return ('0' * (l - ln)) + n
+

@@ -1,0 +1,12 @@
+---
+
+- name: 'restart all the swift services'
+  hosts: swift
+
+  tasks:
+
+  - name: restart swift-storage
+    become: true
+    shell: swift-init all reload
+    when: inventory_hostname in groups['storage']
+    failed_when: false

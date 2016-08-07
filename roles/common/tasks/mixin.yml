@@ -2,3 +2,10 @@
 - name: configuring vim
   become: true
   copy: dest=/etc/vim/vimrc.local src=vimrc.local
+
+
+
+# - name: change hostname
+#   become: true
+#   # hostname: name={{ inventory_hostname | regex_replace('.', '_') }}
+#   hostname: name=ubuntu-x8664

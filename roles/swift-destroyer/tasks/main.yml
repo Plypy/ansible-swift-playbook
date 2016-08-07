@@ -1,0 +1,16 @@
+---
+
+- name: stop all swift services
+  become: true
+  shell: swift-init all stop
+  # when: inventory_hostname in groups['storage']
+  failed_when: false
+
+- name: clear storage folder
+  become: true
+  shell: rm -rf /srv/node/sdb/*
+
+- name: clear configuration folder
+  become: true
+  shell: rm -rf /etc/swift/*
+

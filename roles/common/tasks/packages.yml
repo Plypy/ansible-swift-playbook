@@ -2,3 +2,7 @@
 - name: install git
   become: true
   apt: name=git-core state=present
+
+- name: install vim
+  become: true
+  apt: name=vim state=present

@@ -13,3 +13,7 @@
   become: true
   shell: python get-pip.py
   when: pip_path|failed
+
+- name: copy pip.conf with aliyun's sources
+  become: true
+  copy: dest=/etc/pip.conf src=pip.conf

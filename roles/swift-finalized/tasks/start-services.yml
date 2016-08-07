@@ -13,6 +13,7 @@
   become: true
   shell: swift-init proxy reload
   when: inventory_hostname in groups['proxy']
+  failed_when: false
 
 - name: restart swift-storage
   become: true

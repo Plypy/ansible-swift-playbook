@@ -1,0 +1,7 @@
+# Use this playbook with extremely caution
+# It will tear down all you swift installation
+---
+- name: uninstall swift
+  hosts: all
+  roles:
+  - swift-destroyer

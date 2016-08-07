@@ -1,4 +1,9 @@
 ---
+
+# - include: ssh.yml
+# - include: mount.yml
+# - include: weights.yml
+# ssh thing
 - name: create .ssh directory
   file: path=~/.ssh state=directory
 
@@ -15,3 +20,20 @@
     backrefs: yes
     # if this isn't set, line will be added even if no match of regexp was found
   notify: restart sshd
+
+- name: unmount /srv
+  become: yes
+  mount:
+    fstype: xfs
+    name: /srv
+    src: /dev/mapper/ubuntu--x8664--vg-swift00
+    state: absent
+
+# remount
+- name: remount on /srv/node/sdb
+  become: yes
+  mount:
+    fstype: xfs
+    name: /srv/node/sdb
+    src: /dev/mapper/ubuntu--x8664--vg-swift00
+    state: mounted

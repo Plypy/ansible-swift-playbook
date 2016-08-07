@@ -1,5 +1,5 @@
 - include: apt-sources.yml
 - include: pip.yml
-- include: mixin.yml
 - include: ntp.yml
 - include: packages.yml
+- include: mixin.yml
