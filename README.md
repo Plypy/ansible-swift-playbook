@@ -5,9 +5,6 @@ Ansible-Swift-Playbook(ASP) is designed to provide a simple solution for deployi
 It leverages the power of the mighty automation tool [Ansible](https://www.ansible.com).
 
 
-For simplicity it uses [swauth](https://github.com/openstack/swauth) as the authentication middleware to handle accounts.
-
-
 ## Structure and Specific Files
 It is best to follow the Best Practices, so ASP has adopted the
 structure recommended by Ansible official [Best Practices](http://docs.ansible.com/ansible/playbooks_best_practices.html),
@@ -42,6 +39,8 @@ further distribution.
 
 4. Deploy it! Simply run `ansible-playbook -i *** site.yml`, and wait a while
 have a cup of coffee or tea maybe and you are done.
+
+5. Initialize your swift cluster, like configuring swauth.
 
 ### Adding New Devices Into the Cluster
 Modify the ring files and rerun `site.yml`.
